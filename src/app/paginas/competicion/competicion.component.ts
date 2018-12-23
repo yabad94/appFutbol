@@ -12,7 +12,7 @@ import { StandingsAll } from '../../modelos/standings';
 export class CompeticionComponent implements OnInit, OnDestroy {
 
   public standings: StandingsAll;
-  private loading: boolean;
+  private loading: boolean = true;
 
   constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
 
@@ -25,18 +25,16 @@ export class CompeticionComponent implements OnInit, OnDestroy {
     this.loading= true;
     let idParam: number;
 
-    this.route.params.subscribe( params => idParam= params['id']);  
-
-    console.log(idParam);
-    
-    this._compSrv.getTablaCompetencia(idParam).subscribe((standings1: StandingsAll)=> {
-      console.log(standings1);  //Después borrar.
-      this.standings= standings1;
-      this.loading= false;
-    }, error=> {
-      console.log(error, 'error al traer las tablas de la competencia.');
-      this.loading= false;      
-    });
+    this.route.paramMap.subscribe(params => {
+      idParam = parseInt(params.get('id'));
+      this._compSrv.getTablaCompetencia(idParam).subscribe((standings1: StandingsAll)=> {
+        this.standings= standings1;
+        this.loading= false;
+      }, error=> {
+        console.log(error, 'error al traer las tablas de la competencia.');
+        this.loading= false;      
+      });
+    }); 
 
   }
 
