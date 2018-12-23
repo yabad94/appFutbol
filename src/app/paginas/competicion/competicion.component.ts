@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CompeticionesService } from '../../servicios/competiciones.service';
 import { StandingsAll } from '../../modelos/standings';
 
@@ -14,10 +14,9 @@ export class CompeticionComponent implements OnInit, OnDestroy {
   public standings: StandingsAll;
   private loading: boolean = true;
 
-  constructor(private router: Router, private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
+  constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
 
     console.log('constructor competición');
-    //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
   }
 
