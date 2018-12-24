@@ -12,6 +12,8 @@ import { StandingsAll } from '../modelos/standings';
 
 export class CompeticionesService {
 
+  public tablasCompetencia: StandingsAll;
+
   constructor(private _http: HttpClient, private _datosConf: DatosConfig) {
 
   }
@@ -35,7 +37,8 @@ export class CompeticionesService {
       tablasCompetencia.standings= datos['standings']; 
       tablasCompetencia.season= datos['season']; 
       tablasCompetencia.competition= datos['competition'];
-
+      this.tablasCompetencia= tablasCompetencia;
+ 
       return tablasCompetencia;
     }));
   }

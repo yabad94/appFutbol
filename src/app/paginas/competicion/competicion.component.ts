@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CompeticionesService } from '../../servicios/competiciones.service';
 import { StandingsAll } from '../../modelos/standings';
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-competicion',
@@ -9,37 +10,32 @@ import { StandingsAll } from '../../modelos/standings';
   styles: []
 })
 
-export class CompeticionComponent implements OnInit, OnDestroy {
+export class CompeticionComponent implements OnInit {
 
   public standings: StandingsAll;
-  private loading: boolean = true;
+  private loading: boolean;
+  private idParam: number;
 
   constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
-
-    console.log('constructor competición');
 
   }
 
   ngOnInit() {
 
     this.loading= true;
-    let idParam: number;
 
-    this.route.paramMap.subscribe(params => {
-      idParam = parseInt(params.get('id'));
-      this._compSrv.getTablaCompetencia(idParam).subscribe((standings1: StandingsAll)=> {
-        this.standings= standings1;
-        this.loading= false;
-      }, error=> {
-        console.log(error, 'error al traer las tablas de la competencia.');
-        this.loading= false;      
-      });
-    }); 
+    this.route.paramMap.pipe(flatMap(params=> {
+      this.idParam= parseInt(params.get('id'));
+      return this._compSrv.getTablaCompetencia(this.idParam)
 
-  }
-
-  ngOnDestroy(){
-    console.log('destruido');   
+    })).subscribe((standings1: StandingsAll)=> {
+      this.standings= standings1;
+      this.loading= false;
+      console.log(this.standings);
+    }, error=> {
+      console.log(error, 'error al traer las tablas de la competencia.');
+      this.loading= false;      
+    });
   }
 
 }
