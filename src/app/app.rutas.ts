@@ -10,12 +10,12 @@ import { FixtureCompComponent } from './paginas/competicion/fixture-comp/fixture
 const APP_ROUTES: Routes= [
 
     { path:'home', component: HomeComponent },  
-    { path:'competicion/:id', component: CompeticionComponent, children: [
+    { path:'competicion/:id', component: CompeticionComponent} ,/* children: [
         { path:'table', component: TableCompComponent }, 
         { path:'tableHome', component: TableHomeComponent }, 
         { path:'tableAway', component: TableAwayComponent }, 
         { path: '**', pathMatch: 'full', redirectTo: 'table' }
-    ]},
+    ]},*/
 
     { path:'fixture-comp', component: FixtureCompComponent },
     

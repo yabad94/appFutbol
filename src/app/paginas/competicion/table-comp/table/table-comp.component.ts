@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Standings } from '../../../../modelos/standings';
-import { Competition } from '../../../../modelos/competition';
+import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Standings, StandingsAll } from '../../../../modelos/standings';
 import { CompeticionesService } from '../../../../servicios/competiciones.service';
+import { Competition } from '../../../../modelos/competition';
 
 @Component({
   selector: 'app-table-comp',
@@ -9,29 +9,32 @@ import { CompeticionesService } from '../../../../servicios/competiciones.servic
   styles: []
 })
 
-export class TableCompComponent implements OnInit {
+export class TableCompComponent implements OnInit, OnChanges {
 
+  @Input() tablaComp: StandingsAll
   private tablaTotal: Standings[];
-  private competicion: Competition;
   private loading: boolean;
+  private competition: Competition= null;
 
   constructor(private _compSrv: CompeticionesService) { }
 
   ngOnInit() {
-   
-    this.loading= true;
+ 
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    this.competition= changes.tablaComp.currentValue.competition;
+
+    let tablas: StandingsAll= changes.tablaComp.currentValue;
     this.tablaTotal= [];
+    // this.loading= true;
 
-    for(let i=0; i<this._compSrv.tablasCompetencia.standings.length; i++){
-      if(this._compSrv.tablasCompetencia.standings[i].type=== "TOTAL"){
-        this.tablaTotal.push(this._compSrv.tablasCompetencia.standings[i]);    
-      }
-
-      if(i===this._compSrv.tablasCompetencia.standings.length-1){
-        this.loading= false;  
+    for(let i=0; i< tablas.standings.length; i++){
+      if(tablas.standings[i].type=== "TOTAL"){
+        this.tablaTotal.push(tablas.standings[i]);
       }
     }
- 
   }
 
 }

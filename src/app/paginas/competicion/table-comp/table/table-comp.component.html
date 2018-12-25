@@ -1,8 +1,12 @@
 <app-loading  *ngIf="loading"></app-loading>
 
-<div *ngIf="!loading" class="table-responsive col-xs-12 col-md-12">          
+<div *ngIf="!loading" class="table-responsive col-xs-12 col-md-12">  
+  
+    <div class="text-center mb-3 text-uppercase font-weight-light text-primary font-weight-bold">
+     {{ competition.name }}
+    </div>
 
-    <table *ngFor="let tabla of tablaTotal; let i= index" class="table mb-3">             
+    <table *ngFor="let tabla of tablaTotal; let i= index" class="table mb-4">             
 
         <span class="badge badge-ligth mb-1 font-italic" style="display: inline-block"><small>{{ tabla.stage }}</small></span>
 
@@ -20,8 +24,8 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let equipoPosicion of tablaTotal[i].table" class="text-center">
-        <tr>
+      <tbody *ngFor="let equipoPosicion of tablaTotal[i].table; let i= index" class="text-center">
+        <tr [ngClass]="{}">
           <th class="font-weight-light"> {{ equipoPosicion.position }} </th>
           <th> {{ equipoPosicion.team.name }} </th>
           <th class="font-weight-light"> {{ equipoPosicion.playedGames }} </th>

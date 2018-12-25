@@ -14,8 +14,6 @@ import { CompeticionComponent } from './paginas/competicion/competicion.componen
 import { DatosConfig } from './servicios/datosConfiguracion';
 import { TableCompComponent } from './paginas/competicion/table-comp/table/table-comp.component';
 import { FixtureCompComponent } from './paginas/competicion/fixture-comp/fixture-comp.component';
-import { TableAwayComponent } from './paginas/competicion/table-comp/table-away/table-away.component';
-import { TableHomeComponent } from './paginas/competicion/table-comp/table-home/table-home.component';
 
 
 @NgModule({
@@ -27,9 +25,7 @@ import { TableHomeComponent } from './paginas/competicion/table-comp/table-home/
     NavbarComponent, 
     CompeticionComponent, 
     TableCompComponent, 
-    FixtureCompComponent,
-    TableAwayComponent,
-    TableHomeComponent
+    FixtureCompComponent
   ],
   
   imports: [
