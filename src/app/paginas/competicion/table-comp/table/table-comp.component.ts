@@ -19,16 +19,14 @@ export class TableCompComponent implements OnInit, OnChanges {
   constructor(private _compSrv: CompeticionesService) { }
 
   ngOnInit() {
- 
+  
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
     this.competition= changes.tablaComp.currentValue.competition;
-
     let tablas: StandingsAll= changes.tablaComp.currentValue;
     this.tablaTotal= [];
-    // this.loading= true;
 
     for(let i=0; i< tablas.standings.length; i++){
       if(tablas.standings[i].type=== "TOTAL"){

@@ -1,0 +1,30 @@
+<div class="row">
+  <p class="font-weight-light text-primary mr-2 mt-1">{{ competicion.name }}</p>
+
+  <div [ngSwitch]="competicion.name">
+      <div *ngSwitchCase="'Bundesliga'">
+        <img src="/src/assets/iconos/bundesliga.jpg" width="33" height="33" alt="BBL"> 
+      </div>
+      <div *ngSwitchCase="'Premier League'">
+        <img src="/src/assets/iconos/premier-league.png" width="33" height="33" alt="EPL"> 
+      </div>
+      <div *ngSwitchCase="'Primera Division'">
+      <img src="/src/assets/iconos/la_liga.png" width="33" height="33" alt="La Liga"> 
+      </div>
+      <div *ngSwitchCase="'Ligue 1'">
+      <img src="/src/assets/iconos/ligue1.jpg" width="33" height="33" alt="L1"> 
+      </div>
+      <div *ngSwitchCase="'Eredivisie'">
+      <img src="/src/assets/iconos/eredivise.jpg" width="33" height="33" alt="Eredivisie"> 
+      </div>
+      <div *ngSwitchCase="'Serie A'">
+      <img src="/src/assets/iconos/serie_A.jpg" width="33" height="33" alt="Serie A"> 
+      </div>
+      <div *ngSwitchCase="'Primeira Liga'">
+      <img src="/src/assets/iconos/portuguesa.jpg" width="33" height="33" alt="Primeira Liga"> 
+      </div>
+      <div *ngSwitchCase="'UEFA Champions League'">
+      <img src="/src/assets/iconos/ucl.jpg" width="33" height="33" alt="UCL"> 
+      </div>
+  </div>
+</div>

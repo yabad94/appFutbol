@@ -14,6 +14,7 @@ import { CompeticionComponent } from './paginas/competicion/competicion.componen
 import { DatosConfig } from './servicios/datosConfiguracion';
 import { TableCompComponent } from './paginas/competicion/table-comp/table/table-comp.component';
 import { FixtureCompComponent } from './paginas/competicion/fixture-comp/fixture-comp.component';
+import { CabeceraComponent } from './compartido/cabecera/cabecera.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { FixtureCompComponent } from './paginas/competicion/fixture-comp/fixture
     NavbarComponent, 
     CompeticionComponent, 
     TableCompComponent, 
-    FixtureCompComponent
+    FixtureCompComponent, CabeceraComponent
   ],
   
   imports: [

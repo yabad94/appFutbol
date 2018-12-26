@@ -31,7 +31,7 @@ export class CompeticionComponent implements OnInit {
     })).subscribe((standings1: StandingsAll)=> {
       this.standings= standings1;
       this.loading= false;
-      console.log(this.standings);
+      // console.log(this.standings);
     }, error=> {
       console.log(error, 'error al traer las tablas de la competencia.');
       this.loading= false;      

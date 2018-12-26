@@ -43,9 +43,17 @@ export class CompeticionesService {
     }));
   }
 
-  getPartidosCompetencia(idComp: number, dateFrom: string, dateTo: string){
+  getPartidosCompetenciaFechas(idComp: number, dateFrom: string, dateTo: string){
 
-    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp +'/matches/?dateFrom=' + dateFrom + '?dateTo='+ dateTo, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
+    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp +'/matches/?dateFrom=' + dateFrom + '&dateTo='+ dateTo, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
+      return datos['matches'];
+    }));
+
+  }
+
+  getPartidosCompetenciaSeason(idComp: number, season: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp +'/matches/?season=' + season, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
       return datos['matches'];
     }));
 
