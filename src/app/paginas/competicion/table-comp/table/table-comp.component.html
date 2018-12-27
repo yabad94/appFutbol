@@ -24,8 +24,8 @@
       </tr>
     </thead>
 
-    <tbody *ngFor="let equipoPosicion of tablaTotal[i].table; let i= index" class="text-center">
-      <tr [ngClass]="{}">
+    <tbody *ngFor="let equipoPosicion of tablaTotal[i].table" class="text-center">
+      <tr [routerLink]="['/team', equipoPosicion.team.id]" style="cursor: pointer">
         <th class="font-weight-light"> {{ equipoPosicion.position }} </th>
         <th> {{ equipoPosicion.team.name }} </th>
         <th class="font-weight-light"> {{ equipoPosicion.playedGames }} </th>

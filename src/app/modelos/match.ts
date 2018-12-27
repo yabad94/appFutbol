@@ -18,3 +18,23 @@ export class Match{
     status: string;
     utcDate: string;  
 }
+
+export class Head2Head{
+
+    numberOfMatches: number;
+    awayTeam: TeamH2H;
+    homeTeam: TeamH2H
+}
+
+export class TeamH2H{
+
+    wins: number;
+    draws: number;
+    losses: number
+}
+
+export class IndividualMatch{
+    
+    head2head: Head2Head;
+    match: Match
+}

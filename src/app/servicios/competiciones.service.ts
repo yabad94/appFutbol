@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatosConfig } from './datosConfiguracion';
-import { Observable } from 'rxjs';
 import { StandingsAll } from '../modelos/standings';
 
 
@@ -18,7 +17,7 @@ export class CompeticionesService {
 
   }
 
-  getCompetencias(): Observable<any>{
+  getCompetencias(){
 
     return this._http.get(this._datosConf.linkUrl + 'competitions', {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
         return datos['competitions']
@@ -57,6 +56,42 @@ export class CompeticionesService {
       return datos['matches'];
     }));
 
+  }
+
+  getPartidosMatchDay(idComp: number, matchday: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp +'/matches/?matchday=' + matchday, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
+      return datos['matches'];
+    }));
+
+  }
+
+  getPartidosByStatus(idComp: number, status: string){
+
+    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp +'/matches/?status=' + status, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
+      return datos['matches'];
+    }));
+
+  }
+
+  getProximosPartidosCompetenciaEnEseGameday(idComp: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'matches/?competitions=' + idComp, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})}).pipe(map(datos=> {
+      return datos['matches'];
+    }));
+
+  }
+
+  getPartidoByID(idPartido: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'matches/' + idPartido, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})})
+  
+  }
+
+  getTeamByID(idTeam: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'teams/' + idTeam, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})})
+  
   }
 
 }

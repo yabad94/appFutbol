@@ -1,0 +1,64 @@
+<div *ngIf="individualMatch" class="fadeIn">
+
+    <div class="d-flex justify-content-center">
+      <h2><span class="badge badge-success">{{individualMatch.match.group}}</span></h2>
+    </div>
+    <div class="d-flex justify-content-center mt-1">
+      <h4><span class="badge badge-secondary font-weight-light"> Matchday {{individualMatch.match.matchday}}</span></h4>
+    </div>
+
+    <div class="font-weight-light ml-3 mb-1"><small><u>Date</u>: {{individualMatch.match.utcDate | date:'EEEE, d MMMM y, h:mm a'}}. </small></div>
+    <div class="font-weight-light ml-3"><small><u>Stadium</u>: {{individualMatch.match.venue }}. </small></div>
+
+    <div class="row mt-5">
+      <div class="col-5 d-flex justify-content-center">
+       <p class="font-weight-light"> {{individualMatch.match.homeTeam.name}} </p>
+      </div>
+      <div class="col-2 d-flex justify-content-center">
+        <p class="font-weight-light"> vs. </p>
+      </div>
+      <div class="col-5 d-flex justify-content-center">
+         <p class="font-weight-light"> {{individualMatch.match.awayTeam.name}} </p>
+      </div>
+    </div>
+
+    <!--extra-time case-->
+    <div *ngIf="individualMatch.match.score.extraTime.homeTeam && individualMatch.match.score.extraTime.awayTeam" class="row mt-1">
+      <div class="col-5 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-bold"> {{individualMatch.match.score.extraTime.homeTeam}} </p>
+      </div>
+      <div class="col-2 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-light"> ET </p>
+      </div>
+      <div class="col-5 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-bold"> {{individualMatch.match.score.extraTime.awayTeam}} </p>
+      </div>
+    </div>
+    <!--extra-time case-->
+
+    <div *ngIf="individualMatch.match.status==='FINISHED'" class="row mt-1">
+      <div class="col-5 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-bold"> {{individualMatch.match.score.fullTime.homeTeam}} </p>
+      </div>
+      <div class="col-2 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-light"> FT </p>
+      </div>
+      <div class="col-5 d-flex justify-content-center">
+        <p class="text-uppercase font-weight-bold"> {{individualMatch.match.score.fullTime.awayTeam}} </p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-1">
+      <h5><span class="badge badge-info"> {{individualMatch.match.status}} </span></h5>
+    </div>
+
+    <div class="font-weight-light ml-3 mb-1">
+      <small><u>Referees</u>:</small>
+      <ul>
+        <li *ngFor="let referee of individualMatch.match.referees"> 
+         <small> {{ referee.name }}. </small>
+        </li>
+      </ul>
+    </div>
+
+</div>

@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { APP_ROUTING } from './app.rutas';
 
@@ -15,6 +17,8 @@ import { DatosConfig } from './servicios/datosConfiguracion';
 import { TableCompComponent } from './paginas/competicion/table-comp/table/table-comp.component';
 import { FixtureCompComponent } from './paginas/competicion/fixture-comp/fixture-comp.component';
 import { CabeceraComponent } from './compartido/cabecera/cabecera.component';
+import { MatchCompComponent } from './paginas/competicion/match-comp/match-comp.component';
+import { TeamCompComponent } from './paginas/competicion/team-comp/team-comp.component';
 
 
 @NgModule({
@@ -26,7 +30,7 @@ import { CabeceraComponent } from './compartido/cabecera/cabecera.component';
     NavbarComponent, 
     CompeticionComponent, 
     TableCompComponent, 
-    FixtureCompComponent, CabeceraComponent
+    FixtureCompComponent, CabeceraComponent, MatchCompComponent, TeamCompComponent
   ],
   
   imports: [
@@ -34,6 +38,8 @@ import { CabeceraComponent } from './compartido/cabecera/cabecera.component';
     HttpClientModule, 
     APP_ROUTING,
     CommonModule, 
+    FormsModule,
+    NgxPaginationModule
   ],
 
   providers: [ DatosConfig ],
