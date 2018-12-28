@@ -14,6 +14,7 @@ export class TeamCompComponent implements OnInit {
 
   private idParam: number;
   private teamInfo: TeamInfo;
+  private nameDT: string;
 
   constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { }
 
@@ -25,7 +26,13 @@ export class TeamCompComponent implements OnInit {
 
     })).subscribe((datos: TeamInfo)=> {
       this.teamInfo= datos;
-      console.log(this.teamInfo);      
+      console.log(this.teamInfo); 
+      
+      for(let i=0; i< this.teamInfo.squad.length; i++){
+        if(this.teamInfo.squad[i].role==="COACH"){
+          this.nameDT= this.teamInfo.squad[i].name;
+        }
+      }
     }, (error)=> {
       console.log(error, 'error al traer equipo');      
     });

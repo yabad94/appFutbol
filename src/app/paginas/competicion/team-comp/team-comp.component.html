@@ -1,15 +1,31 @@
-<div class="container">
+<div *ngIf="teamInfo" class="container">
 
   <div class="alert alert-primary" role="alert">
-      Club: A simple primary alert—check it out!
+      Football club: <p class="text-uppercase d-inline"><strong> {{teamInfo?.name}}</strong></p>.
   </div>
 
-  <div class="row">
+  <div class="row font-weight-light">
 
     <div class="col-7">
       <div class="card">
-        <div class="card-body">
-          Personal club data
+        <div class="card-body d-flex justify-content-center"> 
+
+          <div class="card border-secondary">
+            <div class="card-header d-flex justify-content-center">
+              <strong>Information</strong>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><u>Name</u>: {{ teamInfo?.shortName }} </li>
+              <li class="list-group-item"><u>Address</u>: {{ teamInfo?.address }} </li>
+              <li class="list-group-item"><u>Founded</u>: {{ teamInfo?.founded }} </li>
+              <li class="list-group-item"><u>Colors</u>: {{ teamInfo?.clubColors }} </li>
+              <li class="list-group-item"><u>Acronym</u>: {{ teamInfo?.tla }} </li>
+              <li class="list-group-item"><u>Stadium</u>: {{ teamInfo?.venue }} </li>
+              <li class="list-group-item"><u>Country</u>: {{ teamInfo?.area.name }} </li>
+              <li class="list-group-item"><u>Coach</u>: {{ nameDT }} </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
@@ -17,7 +33,21 @@
     <div class="col-5">
       <div class="card">
         <div class="card-body">
-          sport competition club data.
+          <div class="row d-flex justify-content-center">
+
+              <div class="ml-1 mr-2 d-flex align-items-center">
+                  <img [src]="teamInfo.crestUrl" alt="shield" width="120" height="120">
+              </div>
+              <div class="card border-secondary d-block">
+                <div class="card-header d-flex justify-content-center">
+                    <strong>Current competitions</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li *ngFor="let competicion of teamInfo.activeCompetitions" class="list-group-item d-flex justify-content-center"> {{competicion.name}} </li>
+                </ul>
+              </div>
+              
+          </div>
         </div>
       </div>
     </div>

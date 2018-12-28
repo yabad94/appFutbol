@@ -21,14 +21,14 @@ export class TeamInfo{
     email?: string;
     founded: number;
     venue: string;
-    squad: Squad;
+    squad: Player[];
     lastUpdated?: string;
 }
 
-export class Squad{
-    players: Player[];
-    lastUpdated?: string;
-}
+// export class Squad{
+//     players: Player[];
+//     lastUpdated?: string;
+// }
 
 export class Player{
     id: number;
