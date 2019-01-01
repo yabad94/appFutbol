@@ -2,6 +2,7 @@ import { Team } from './team';
 import { Referee } from './referee';
 import { Season } from './season';
 import { Score } from './score';
+import { Competition } from './competition';
 
 
 export class Match{
@@ -17,6 +18,7 @@ export class Match{
     stage: string;
     status: string;
     utcDate: string;  
+    competition?: Competition
 }
 
 export class Head2Head{

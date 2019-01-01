@@ -15,6 +15,7 @@ export class CompeticionComponent implements OnInit {
   public standings: StandingsAll;
   private loading: boolean;
   private idParam: number;
+  
 
   constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
 
@@ -30,8 +31,8 @@ export class CompeticionComponent implements OnInit {
 
     })).subscribe((standings1: StandingsAll)=> {
       this.standings= standings1;
-      this.loading= false;
       // console.log(this.standings);
+      this.loading= false;
     }, error=> {
       console.log(error, 'error al traer las tablas de la competencia.');
       this.loading= false;      

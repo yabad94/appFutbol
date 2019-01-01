@@ -6,7 +6,15 @@ import { Competition } from '../../../../modelos/competition';
 @Component({
   selector: 'app-table-comp',
   templateUrl: './table-comp.component.html',
-  styles: []
+  styles: [
+    `
+    tbody tr:hover {
+      background-color: #DCDCDC;
+      cursor: pointer;
+    }
+    
+    `
+  ]
 })
 
 export class TableCompComponent implements OnInit, OnChanges {
@@ -27,6 +35,8 @@ export class TableCompComponent implements OnInit, OnChanges {
     this.competition= changes.tablaComp.currentValue.competition;
     let tablas: StandingsAll= changes.tablaComp.currentValue;
     this.tablaTotal= [];
+
+    // console.log(changes.tablaComp.currentValue);    
 
     for(let i=0; i< tablas.standings.length; i++){
       if(tablas.standings[i].type=== "TOTAL"){

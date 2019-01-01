@@ -25,9 +25,9 @@
     </thead>
 
     <tbody *ngFor="let equipoPosicion of tablaTotal[i].table" class="text-center">
-      <tr [routerLink]="['/team', equipoPosicion.team.id]" style="cursor: pointer">
+      <tr [routerLink]="['/team', equipoPosicion.team.id]">
         <th class="font-weight-light"> {{ equipoPosicion.position }} </th>
-        <th> {{ equipoPosicion.team.name }} </th>
+        <th> <img class="mb-1" [src]="equipoPosicion.team.crestUrl" width="20" height="22"> {{ equipoPosicion.team.name }} </th>
         <th class="font-weight-light"> {{ equipoPosicion.playedGames }} </th>
         <th class="font-weight-light"> {{ equipoPosicion.won }} </th>
         <th class="font-weight-light"> {{ equipoPosicion.lost }} </th>

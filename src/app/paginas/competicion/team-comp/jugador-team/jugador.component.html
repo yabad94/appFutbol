@@ -1,0 +1,9 @@
+<ul *ngIf="jugador" class="list-group">
+  <li class="list-group-item list-group-item-success d-flex justify-content-center">Player</li>
+  <li *ngIf="jugador.name" class="list-group-item font-weight-light"><u>Name</u>: {{ jugador?.name }} </li>
+  <li *ngIf="jugador.position" class="list-group-item font-weight-light"><u>Position</u>: {{ jugador?.position }} </li>
+  <li *ngIf="jugador.nationality" class="list-group-item font-weight-light"><u>Nationality</u>: {{ jugador?.nationality }} </li>
+  <li *ngIf="jugador.dateOfBirth" class="list-group-item font-weight-light"><u>Date of birth</u>: {{ jugador?.dateOfBirth | date:'d/M/yyyy' }} </li>
+  <li *ngIf="jugador.countryOfBirth" class="list-group-item font-weight-light"><u>Country of birth</u>: {{ jugador?.countryOfBirth }} </li>
+  <li *ngIf="jugador.shirtNumber" class="list-group-item font-weight-light"><u>Shirt number</u>: {{ jugador?.shirtNumber }} </li>
+</ul>

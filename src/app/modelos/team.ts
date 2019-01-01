@@ -25,11 +25,6 @@ export class TeamInfo{
     lastUpdated?: string;
 }
 
-// export class Squad{
-//     players: Player[];
-//     lastUpdated?: string;
-// }
-
 export class Player{
     id: number;
     name: string;
@@ -39,4 +34,10 @@ export class Player{
     nationality: string;
     shirtNumber: number;
     role: string
+}
+
+export class ScorerPlayer{
+    numberOfGoals: number;
+    player: Player;
+    team: Team;
 }

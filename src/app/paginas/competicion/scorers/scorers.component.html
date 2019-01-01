@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <h4><span class="badge badge-pill badge-success"><strong>Season {{ startSeasonYear }}/{{ endSeasonYear }}</strong></span></h4>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="col-2 alert alert-primary text-center font-weight-light mt-3" role="alert">
+    SCORERS
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+
+  <table class="table col-8">
+    <thead class="thead-light">
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Team</th>
+        <th scope="col">Goals</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let goleador of scorers; let i=index" class="text-center font-weight-light" (click)="verJugador(goleador)" data-toggle="modal" data-target="#exampleModalCenter">
+        <th scope="row"><strong> {{i+1}} </strong></th>
+        <td> {{goleador.player.name}} </td>
+        <td> {{goleador.team.name}} </td>
+        <td><strong> {{goleador.numberOfGoals}} </strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenter">Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <app-jugador [player]="playerSelected"></app-jugador> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal-->

@@ -6,7 +6,7 @@
 
   <div class="row font-weight-light">
 
-    <div class="col-7">
+    <div class="col-md-7 col-sm-12 mt-3">
       <div class="card">
         <div class="card-body d-flex justify-content-center"> 
 
@@ -30,28 +30,118 @@
       </div>
     </div>
 
-    <div class="col-5">
+    <div class="col-md-5 col-sm-12 mt-3">
       <div class="card">
         <div class="card-body">
           <div class="row d-flex justify-content-center">
 
-              <div class="ml-1 mr-2 d-flex align-items-center">
-                  <img [src]="teamInfo.crestUrl" alt="shield" width="120" height="120">
+              <div class="ml-1 mr-2 mb-3 mt-3 d-flex align-items-center">
+                  <img [src]="teamInfo?.crestUrl" alt="shield" width="120" height="120">
               </div>
-              <div class="card border-secondary d-block">
+              <div class="card border-secondary">
                 <div class="card-header d-flex justify-content-center">
                     <strong>Current competitions</strong>
-                </div>
+                </div> 
                 <ul class="list-group list-group-flush">
-                  <li *ngFor="let competicion of teamInfo.activeCompetitions" class="list-group-item d-flex justify-content-center"> {{competicion.name}} </li>
+                  <li *ngFor="let competicion of teamInfo.activeCompetitions" class="list-group-item d-flex justify-content-center d-flex justify-items-center"> {{competicion.name}} </li>
                 </ul>
               </div>
               
           </div>
         </div>
       </div>
+
+      <div class="row ml-4 mt-4"> 
+        <button type="button" class="btn btn-outline-secondary col-5" data-toggle="modal" data-target=".bd-squad-modal-lg">Squad</button>
+        <button type="button" class="btn btn-outline-secondary ml-4 col-5" data-toggle="modal" data-target=".bd-fixture-modal-lg">Fixture</button>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header d-flex justify-content-center">
+          <strong>Social media</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><u>Web site</u>: <a [href]="teamInfo.website"> {{ teamInfo?.website }} </a></li>
+          <li class="list-group-item"><u>Email</u>: {{ teamInfo?.email }} </li>
+          <li class="list-group-item"><u>Phone</u>: {{ teamInfo?.phone }} </li>
+        </ul>
+      </div>
+
     </div>
 
   </div>
 
+  <hr>
+
 </div>
+
+<!--Squad modal-->
+<div class="modal fade bd-squad-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding-right: 0vh; padding-left: 0vh;">
+        <div class="modal-header">
+          <img [src]="teamInfo?.crestUrl" alt="shield" width="45" height="45"> <h5 class="modal-title font-weight-light ml-2 mt-2" id="exampleModalCenterTitle"> <strong>{{teamInfo?.name}}</strong> team. </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+              <div class="col-4">
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: rgb(226, 223, 223); height: 6.5vh;">Goalkeepers</li>
+                    <li id="playerButton" *ngFor="let goalkeeper of goalkeepers"  class="list-group-item" style="height: 5.5vh;" (click)="verJugador(goalkeeper)"><small><p style="float:left;">{{goalkeeper.name}}</p></small> <span *ngIf="goalkeeper.shirtNumber" class="badge badge-success" style="float: right;">{{goalkeeper.shirtNumber}}  </span></li>
+                  </ul> 
+                </div>
+                <div class="card mt-3"> 
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: rgb(226, 223, 223); height: 6.5vh;">Defenders</li>
+                    <li id="playerButton" *ngFor="let defender of defenders" class="list-group-item" style="height: 5.5vh;" (click)="verJugador(defender)"><small> <p style="float:left;">{{defender.name}}</p></small> <span *ngIf="defender.shirtNumber" class="badge badge-success" style="float: right;">{{defender.shirtNumber}}  </span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card mb-3">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: rgb(226, 223, 223); height: 6.5vh;">Midfielders</li>
+                    <li id="playerButton" *ngFor="let midfielder of midfielders " class="list-group-item" style="height: 5.5vh;" (click)="verJugador(midfielder)"><small> <p style="float:left;">{{midfielder.name}}</p></small> <span *ngIf="midfielder.shirtNumber" class="badge badge-success" style="float: right;">{{midfielder.shirtNumber}}</span></li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="background-color: rgb(226, 223, 223); height: 6.5vh;">Attackers</li>
+                    <li id="playerButton" *ngFor="let attacker of attackers " class="list-group-item" style="height: 5.5vh;" (click)="verJugador(attacker)"><small> <p style="float:left;">{{attacker.name}}</p></small> <span *ngIf="attacker.shirtNumber" class="badge badge-success" style="float: right;">{{attacker.shirtNumber}} </span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="card border-dark">
+                  <app-jugador [player]="selectedPlayer"></app-jugador>
+                </div>  
+              </div>
+
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  <!--Squad modal-->
+
+  <!--Fixture modal-->
+  <div class="modal fade bd-fixture-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> {{teamInfo?.name}} | Fixture</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <app-fixture-team [idEquipo]="teamInfo?.id"></app-fixture-team>
+      </div>
+    </div>
+  </div>
+  <!--Fixture modal-->
