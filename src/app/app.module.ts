@@ -27,7 +27,7 @@ import { FixtureComponent } from './paginas/competicion/shared/fixture/fixture.c
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [  
     AppComponent,
     HomeComponent,
     SidebarComponent,

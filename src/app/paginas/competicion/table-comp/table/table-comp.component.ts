@@ -41,6 +41,8 @@ export class TableCompComponent implements OnInit, OnChanges {
     for(let i=0; i< tablas.standings.length; i++){
       if(tablas.standings[i].type=== "TOTAL"){
         this.tablaTotal.push(tablas.standings[i]);
+        console.log(this.tablaTotal);
+        
       }
     }
   }

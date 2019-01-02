@@ -38,8 +38,7 @@ export class CompeticionesService {
       tablasCompetencia.season= datos['season']; 
       tablasCompetencia.competition= datos['competition'];
       this.tablasCompetencia= tablasCompetencia;
-      console.log(this.tablasCompetencia);
-
+      
       return tablasCompetencia;
     }));
   }

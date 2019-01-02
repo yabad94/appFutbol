@@ -2,11 +2,7 @@
 
 <div *ngIf="!loading" class="table-responsive col-xs-12 col-md-12">  
 
-  <div class="mb-3 d-flex justify-content-center">
-      <app-cabecera [competicion]="competition"></app-cabecera>
-  </div>
-
-  <table *ngFor="let tabla of tablaTotal; let i= index" class="table mb-4">             
+  <table *ngFor="let tabla of tablaTotal; let i=index" class="table mb-4">             
 
     <span class="badge badge-ligth mb-1 font-italic" style="display: inline-block"><small>{{ tabla.stage }}</small></span>
 

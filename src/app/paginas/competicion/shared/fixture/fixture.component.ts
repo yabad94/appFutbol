@@ -16,8 +16,6 @@ export class FixtureComponent implements OnInit, OnChanges {
   @Input() competencia: Competition;
   @Input() seasonFixture: Season;
   private matchesAllSeason: Match[]; 
-  private startSeasonYear: number;
-  private endSeasonYear: number;
   private pageActual: number;
   private cantidadPartidosxFecha: number;
   private idPartido: number;
@@ -29,9 +27,6 @@ export class FixtureComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(cambios: SimpleChanges){
-
-    this.startSeasonYear= new Date(this.seasonFixture.startDate).getFullYear();
-    this.endSeasonYear= new Date(this.seasonFixture.endDate).getFullYear();
     
     //Por cada Input que envio, se ejecuta ngOnChanges(). Con este if() hago que se haga la búsqueda a la API una vez.
     if(cambios.seasonFixture){
