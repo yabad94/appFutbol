@@ -1,7 +1,7 @@
 <div class="row">
-  <p class="font-weight-light text-primary mr-2 mt-1">{{ competicion.name }}</p>
+  <p class="font-weight-light text-primary mr-2 mt-1">{{ competition?.name }}</p>
 
-  <div [ngSwitch]="competicion.name">
+  <div [ngSwitch]="competition?.name">
       <div *ngSwitchCase="'Bundesliga'">
         <img src="/src/assets/iconos/bundesliga.jpg" width="33" height="33" alt="BBL"> 
       </div>

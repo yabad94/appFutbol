@@ -17,7 +17,7 @@
   <div class="tab-content pt-3 pb-3 pl-3 pr-3" id="myTabContent">
       <div class="tab-pane fade show active pt-4 pb-4" id="home" role="tabpanel" aria-labelledby="home-tab">
           <div class="d-flex justify-content-center pb-1 pl-1 pr-1">
-                <app-table-comp [tablaComp]="standings"></app-table-comp> 
+                <app-table-comp [competencia]="competition" [tablaComp]="totalTableComp"></app-table-comp> 
           </div>
       </div>
 
@@ -56,31 +56,33 @@
 
 
 <!--Modal table-->
-<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="font-weight-light"> Home table </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <!-- <app-table [table]="homeTableComp"></app-table> -->
+          <app-table-comp [competencia]="competition" [tablaComp]="homeTableComp"></app-table-comp>
       </div>  
     </div>
   </div>
 </div>
 
-<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="false">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="font-weight-light"> Away table </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       <!-- <app-table [table]="awayTableComp"></app-table> -->
+          <app-table-comp [competencia]="competition" [tablaComp]="awayTableComp"></app-table-comp>
       </div>
     </div>
   </div>

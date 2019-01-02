@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 import { Competition } from '../../modelos/competition';
 
 @Component({
@@ -11,12 +11,15 @@ import { Competition } from '../../modelos/competition';
 export class CabeceraComponent implements OnInit, OnChanges {
   
   @Input() competicion: Competition;    //Datos que coloco en la cabecera.
+  private competition: Competition;
 
   constructor() { 
 
   }
 
-  ngOnChanges(){
+  ngOnChanges(cambios: SimpleChanges){
+
+    this.competition= cambios.competicion.currentValue;
 
   }
 

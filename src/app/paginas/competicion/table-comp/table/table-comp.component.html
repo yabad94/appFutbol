@@ -1,37 +1,44 @@
 <app-loading  *ngIf="loading"></app-loading>
 
-<div *ngIf="!loading" class="table-responsive col-xs-12 col-md-12">  
+<div *ngIf="!loading">
 
-  <table *ngFor="let tabla of tablaTotal; let i=index" class="table mb-4">             
+  <div class="d-flex justify-content-center mt-2 mb-3">
+      <app-cabecera [competicion]="competition"></app-cabecera>
+  </div>
 
-    <span class="badge badge-ligth mb-1 font-italic" style="display: inline-block"><small>{{ tabla.stage }}</small></span>
+  <div class="table-responsive col-xs-12 col-md-12">  
 
-    <thead class="thead-light text-center">
-      <span class="badge badge-info mb-1">{{ tabla.group }}</span>
-      <tr>
-        <th scope="col" class="font-weight-light">#</th>
-        <th scope="col" class="font-weight-light"><strong>Team</strong></th>
-        <th scope="col" class="font-weight-light"><strong>Played</strong></th>
-        <th scope="col" class="font-weight-light"><strong>Won</strong></th>
-        <th scope="col" class="font-weight-light"><strong>Lost</strong></th>
-        <th scope="col" class="font-weight-light"><strong>Draw</strong></th>
-        <th scope="col" class="font-weight-light"><strong>Goal diff</strong></th>
-        <th scope="col">Points</th>
-      </tr>
-    </thead>
+    <table *ngFor="let tabla of tablaTotal; let i=index" class="table mb-4">             
 
-    <tbody *ngFor="let equipoPosicion of tablaTotal[i].table" class="text-center">
-      <tr [routerLink]="['/team', equipoPosicion.team.id]">
-        <th class="font-weight-light"> {{ equipoPosicion.position }} </th>
-        <th> <img class="mb-1" [src]="equipoPosicion.team.crestUrl" width="20" height="22"> {{ equipoPosicion.team.name }} </th>
-        <th class="font-weight-light"> {{ equipoPosicion.playedGames }} </th>
-        <th class="font-weight-light"> {{ equipoPosicion.won }} </th>
-        <th class="font-weight-light"> {{ equipoPosicion.lost }} </th>
-        <th class="font-weight-light"> {{ equipoPosicion.draw }} </th>
-        <th class="font-weight-light"> {{ equipoPosicion.goalDifference }} </th>
-        <th> <strong>{{ equipoPosicion.points }} </strong></th>
-      </tr>
-    </tbody>
-  </table>
+      <span class="badge badge-ligth mb-1 font-italic" style="display: inline-block"><small>{{ tabla.stage }}</small></span>
 
+      <thead class="thead-light text-center">
+        <span class="badge badge-info mb-1">{{ tabla.group }}</span>
+        <tr>
+          <th scope="col" class="font-weight-light">#</th>
+          <th scope="col" class="font-weight-light"><strong>Team</strong></th>
+          <th scope="col" class="font-weight-light"><strong>Played</strong></th>
+          <th scope="col" class="font-weight-light"><strong>Won</strong></th>
+          <th scope="col" class="font-weight-light"><strong>Lost</strong></th>
+          <th scope="col" class="font-weight-light"><strong>Draw</strong></th>
+          <th scope="col" class="font-weight-light"><strong>Goal diff</strong></th>
+          <th scope="col">Points</th>
+        </tr>
+      </thead>
+
+      <tbody *ngFor="let equipoPosicion of tablaTotal[i].table" class="text-center">
+        <tr [routerLink]="['/team', equipoPosicion.team.id]">
+          <th class="font-weight-light"> {{ equipoPosicion.position }} </th>
+          <th> <img class="mb-1" [src]="equipoPosicion.team.crestUrl" width="20" height="22"> {{ equipoPosicion.team.name }} </th>
+          <th class="font-weight-light"> {{ equipoPosicion.playedGames }} </th>
+          <th class="font-weight-light"> {{ equipoPosicion.won }} </th>
+          <th class="font-weight-light"> {{ equipoPosicion.lost }} </th>
+          <th class="font-weight-light"> {{ equipoPosicion.draw }} </th>
+          <th class="font-weight-light"> {{ equipoPosicion.goalDifference }} </th>
+          <th> <strong>{{ equipoPosicion.points }} </strong></th>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>

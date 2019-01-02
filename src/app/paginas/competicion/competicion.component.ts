@@ -8,7 +8,14 @@ import { Competition } from 'src/app/modelos/competition';
 @Component({
   selector: 'app-competicion',
   templateUrl: './competicion.component.html',
-  styles: []
+  styles: [
+    `
+    .modal-backdrop {
+      z-index: -1;
+    }
+    
+    `
+  ]
 })
 
 export class CompeticionComponent implements OnInit {
