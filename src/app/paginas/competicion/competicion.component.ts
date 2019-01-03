@@ -9,11 +9,9 @@ import { Competition } from 'src/app/modelos/competition';
   selector: 'app-competicion',
   templateUrl: './competicion.component.html',
   styles: [
-    `
-    .modal-backdrop {
-      z-index: -1;
-    }
-    
+    ` 
+   
+
     `
   ]
 })
@@ -46,7 +44,6 @@ export class CompeticionComponent implements OnInit {
     })).subscribe((standings1: StandingsAll)=> {
       this.competition= standings1.competition;
       this.standings= standings1;
-      console.log(this.standings);
       this.startSeasonYear= new Date(this.standings.season.startDate).getFullYear();
       this.endSeasonYear= new Date(this.standings.season.endDate).getFullYear(); 
 
@@ -67,12 +64,13 @@ export class CompeticionComponent implements OnInit {
         }
 
       }
-
       this.loading= false;
+     
     }, error=> {
       console.log(error, 'error al traer las tablas de la competencia.');
       this.loading= false;      
     });
 
   }
+
 }

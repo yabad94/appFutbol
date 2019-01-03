@@ -1,4 +1,6 @@
-<div *ngIf="teamInfo" class="container">
+<app-loading *ngIf="loading"></app-loading> 
+
+<div *ngIf="teamInfo && !loading" class="container">
 
   <div class="alert alert-primary" role="alert">
       Football club: <p class="text-uppercase d-inline"><strong> {{teamInfo?.name}}</strong></p>.

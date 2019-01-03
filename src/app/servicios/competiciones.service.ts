@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatosConfig } from './datosConfiguracion';
 import { StandingsAll } from '../modelos/standings';
+import { Subject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -13,6 +14,9 @@ export class CompeticionesService {
 
   public tablasCompetencia: StandingsAll;
   private twitterBearerKey: string= 'Bearer AAAAAAAAAAAAAAAAAAAAAOrB9AAAAAAAdKVHpu6xhzHfq4rcKGtC%2F5hRUpQ%3DWmBaBBaf50KZIy0ccKNF6vAHFTzi6oGroezKbSJfOIJbTQvp1x'
+  subject: Subject<boolean>= new Subject<boolean>();
+  observable: Observable<boolean>= this.subject.asObservable();
+
 
   constructor(private _http: HttpClient, private _datosConf: DatosConfig) {
 

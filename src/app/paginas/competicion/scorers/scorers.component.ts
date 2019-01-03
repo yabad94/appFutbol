@@ -23,6 +23,7 @@ export class ScorersComponent implements OnInit, OnChanges {
 
   @Input() competicion: Competition;
   @Input() seasonFixture: Season;
+  private loading: boolean;
   private startSeasonYear: number;
   private endSeasonYear: number;
   private scorers: ScorerPlayer[];
@@ -36,11 +37,14 @@ export class ScorersComponent implements OnInit, OnChanges {
 
   ngOnChanges(){
 
+    this.loading= true;
+
     this.startSeasonYear= new Date(this.seasonFixture.startDate).getFullYear();
     this.endSeasonYear= new Date(this.seasonFixture.endDate).getFullYear();
 
     this._compSrv.getScorersComp(this.competicion.id).subscribe((datos: ScorerPlayer[])=> {
       this.scorers= datos;
+      this.loading= false;
     });
     
   }

@@ -30,6 +30,7 @@ declare let $: any;
 export class TeamCompComponent implements OnInit {
 
   private idParam: number;
+  private loading: boolean;
   private teamInfo: TeamInfo;
   private nameDT: string;
   private goalkeepers: Player[];
@@ -41,6 +42,8 @@ export class TeamCompComponent implements OnInit {
   constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { }
 
   ngOnInit() {
+
+    this.loading= true;
     
     this.route.paramMap.pipe(flatMap(params=> {
       this.idParam= parseInt(params.get('id'));
@@ -57,6 +60,7 @@ export class TeamCompComponent implements OnInit {
       }
 
       this.organizarEquipo(this.teamInfo.squad);
+      this.loading= false;
     }, (error)=> {
       console.log(error, 'error al traer equipo');      
     });

@@ -17,6 +17,7 @@ export class MatchCompComponent implements OnInit, OnChanges {
   private individualMatch: IndividualMatch;
   private escudoHomeTeam: string;
   private escudoAwayTeam: string;
+  private loading: boolean;
 
   constructor(private _compSrv: CompeticionesService) { }
 
@@ -27,6 +28,8 @@ export class MatchCompComponent implements OnInit, OnChanges {
   ngOnChanges(cambios: SimpleChanges){
 
     if(cambios.idPartidoModal.currentValue!= null){
+
+      this.loading= true;
 
       //Busco partido por ID, busco equipo local por ID(escudo), busco equipo visitante por ID(escudo).
       new Observable((resolve)=> {
@@ -45,6 +48,11 @@ export class MatchCompComponent implements OnInit, OnChanges {
 
       })).subscribe((equipoVisitante: Team)=> {
         this.escudoAwayTeam= equipoVisitante.crestUrl;
+        this.loading= false;
+      
+      }, (error)=> {
+        console.log(error, 'error al traer datos del partido.');
+        this.loading= false;
       });
     }    
   }

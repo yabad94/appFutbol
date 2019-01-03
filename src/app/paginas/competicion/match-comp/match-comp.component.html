@@ -1,4 +1,6 @@
-<div *ngIf="individualMatch" class="fadeIn">
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="individualMatch && !loading" class="fadeIn">
 
     <div class="d-flex justify-content-center">
       <h2><span class="badge badge-success">{{individualMatch.match.group}}</span></h2>
@@ -62,7 +64,7 @@
       <h5><span class="badge badge-info"> {{individualMatch.match.status}} </span></h5>
     </div>
 
-    <table class="table table-sm table-bordered flex-wrap col-10">
+    <table class="table table-sm table-bordered flex-wrap col-10 mt-4">
       <thead>
         <tr class="text-center">
           <th style="width: 19%; background-color: #DCDCDC;">Head 2 head</th>

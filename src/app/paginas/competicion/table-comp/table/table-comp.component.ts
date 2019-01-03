@@ -33,7 +33,7 @@ export class TableCompComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log(changes);
+    // console.log(changes);
 
     if(changes.tablaComp.currentValue){
       this.tablaTotal= [];

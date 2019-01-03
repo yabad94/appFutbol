@@ -13,10 +13,13 @@ export class LivesMatchesComponent implements OnInit {
 
   private partidos: Match[];
   private smsNoPartidos: string;
+  private loading: boolean;
 
   constructor(private _compSrv: CompeticionesService) { }
 
   ngOnInit() {
+
+    this.loading= true;
 
     //Con forkJoin me aseguro de mostrar los partidos jugandose en vivo y cuando están en el entretiempo.
     forkJoin( this._compSrv.getPartidosByStatus('IN_PLAY', new Date().toISOString().slice(0,10), new Date().toISOString().slice(0,10)), 
@@ -62,6 +65,11 @@ export class LivesMatchesComponent implements OnInit {
                     break;  
                 }
               }
+
+              this.loading= false;
+            }, (error)=> {
+              console.log(error, 'error al traer partidos en vivo.');
+              this.loading= false;
             });
 
   }

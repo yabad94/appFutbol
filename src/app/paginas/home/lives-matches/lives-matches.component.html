@@ -1,23 +1,27 @@
 <h4><span class="badge badge-success mt-2">Live matches</span></h4>
 <hr class="mt-1" style="border-color: black;">
 
-<div *ngIf="smsNoPartidos== null; else noHayPartidos">
-  <table class="table table-sm" style="background-color:rgb(245, 243, 243);">
-    <tbody>
-      <tr *ngFor="let partido of partidos" class="text-center">
-        <td><span class="badge badge-primary"> {{partido.competition.name}} </span></td>
-        <td><a [routerLink]="['/team', partido.homeTeam.id]"><small> {{partido.homeTeam.name}} </small></a></td>
-        <td><small><strong> {{partido.score.fullTime.homeTeam}} </strong></small></td>
-        <td><small>vs</small></td>
-        <td><small><strong> {{partido.score.fullTime.awayTeam}} </strong></small></td>
-        <td><a [routerLink]="['/team', partido.awayTeam.id]"><small> {{partido.awayTeam.name}} </small></a></td>
-        <td><small> {{partido.utcDate |  date: 'H:mm' }}hs </small></td>
-        <td><h6><span class="badge badge-pill badge-info"><small> {{partido.status}} </small></span></h6></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<app-loading *ngIf="loading"></app-loading>
 
-<ng-template #noHayPartidos>
-  <p class="text-center font-weight-light"> {{smsNoPartidos}} </p>
-</ng-template>
+<div *ngIf="!loading">
+  <div *ngIf="smsNoPartidos== null; else noHayPartidos">
+    <table class="table table-sm" style="background-color:rgb(245, 243, 243);">
+      <tbody>
+        <tr *ngFor="let partido of partidos" class="text-center">
+          <td><span class="badge badge-primary"> {{partido.competition.name}} </span></td>
+          <td><a [routerLink]="['/team', partido.homeTeam.id]"><small> {{partido.homeTeam.name}} </small></a></td>
+          <td><small><strong> {{partido.score.fullTime.homeTeam}} </strong></small></td>
+          <td><small>vs</small></td>
+          <td><small><strong> {{partido.score.fullTime.awayTeam}} </strong></small></td>
+          <td><a [routerLink]="['/team', partido.awayTeam.id]"><small> {{partido.awayTeam.name}} </small></a></td>
+          <td><small> {{partido.utcDate |  date: 'H:mm' }}hs </small></td>
+          <td><h6><span class="badge badge-pill badge-info"><small> {{partido.status}} </small></span></h6></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noHayPartidos>
+    <p class="text-center font-weight-light"> {{smsNoPartidos}} </p>
+  </ng-template>
+</div>
