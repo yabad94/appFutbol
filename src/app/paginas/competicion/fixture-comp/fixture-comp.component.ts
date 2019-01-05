@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
-import { CompeticionesService } from '../../../servicios/competiciones.service';
+// import { CompeticionesService } from '../../../servicios/competiciones.service';
 import { Season } from '../../../modelos/season';
 import { Competition } from '../../../modelos/competition';
+import { FixtureStageTypeComp } from 'src/app/modelos/fixtureStageTypeComp';
+
 
 @Component({
   selector: 'app-fixture-comp',
@@ -15,33 +17,33 @@ export class FixtureCompComponent implements OnInit, OnChanges {
 
   @Input() competencia: Competition;
   @Input() seasonFixture: Season;
-  @Output() pasarLoading= new EventEmitter<boolean>();
+  @Input() fixture: FixtureStageTypeComp;
+  @Input() cantPartCadaFecha: number;
+  @Output() cerrarModalFix= new EventEmitter<string>();
+  
   private startSeasonYear: number;
   private endSeasonYear: number;
-  private loading: boolean;
+  // private loading: boolean;
 
 
-  constructor(private _compSrv: CompeticionesService) { }
+  constructor() { }
 
   ngOnInit() {  
-
-    // this.loading= true;
-
-    this.startSeasonYear= new Date(this.seasonFixture.startDate).getFullYear();
-    this.endSeasonYear= new Date(this.seasonFixture.endDate).getFullYear();
 
   }
 
   ngOnChanges(){
 
-  }
-
-  recibirLoading(evento: boolean){
-
-    this.loading= evento;
-    console.log(this.loading);
+    if(this.seasonFixture){
+      this.startSeasonYear= new Date(this.seasonFixture.startDate).getFullYear();
+      this.endSeasonYear= new Date(this.seasonFixture.endDate).getFullYear();
+    }
     
   }
 
+  cerrarModalCompeticion(event: string){
+    console.log('fix-comp: ', event);
+    this.cerrarModalFix.emit(event);    
+  }
 
 }

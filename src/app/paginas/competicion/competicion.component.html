@@ -22,7 +22,20 @@
       </div>
 
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <app-fixture-comp [competencia]="standings.competition" [seasonFixture]="standings.season"></app-fixture-comp>
+
+        <div class="d-flex justify-content-center mt-4">
+            <app-cabecera [competicion]="competition"></app-cabecera>
+        </div>
+
+        <div *ngFor="let estadoMatchFix of estadosMatchessFixture" class="d-flex justify-content-center row">
+          <div class="card border-success mt-4" (click)="stageFixtureSelected(estadoMatchFix)" style="width: 16rem; height: 9rem; cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-lg3">
+            <div class="card-header font-weight-light d-flex justify-content-center"> {{competition.name}} </div>
+            <div class="card-body text-success">
+              <h6 class="card-title text-center"> {{estadoMatchFix.name_stage}} </h6> 
+              <p class="card-text text-center"><small>Click to see the fixture.</small></p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -88,3 +101,21 @@
   </div>
 </div>
 <!--Modal table-->
+
+<!--Modal fixture-->
+<div id="modalFixture" class="modal fade bd-example-modal-lg3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-fixture-comp [competencia]="standings?.competition" [seasonFixture]="standings?.season" [cantPartCadaFecha]="cantidadPartidosxFecha" [fixture]="fixtureElegido" (cerrarModalFix)="cerrarModalDesdeFixture($event)"></app-fixture-comp>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modal fixture-->

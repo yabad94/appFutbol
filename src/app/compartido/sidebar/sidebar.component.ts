@@ -27,6 +27,12 @@ export class SidebarComponent implements OnInit {
         console.log('error trayendo ligas al sidebar: ', error); 
       });
     }).then((competiciones: Competition[])=> {
+      for(let i=0; i<competiciones.length; i++){
+        if(competiciones[i].name==="UEFA Champions League"){
+          competiciones[i].name= "Champions League";
+        }
+      }
+      
       this.competitions= competiciones;
     });
   }
