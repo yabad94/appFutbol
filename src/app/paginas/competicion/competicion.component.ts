@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CompeticionesService } from '../../servicios/competiciones.service';
 import { StandingsAll, Standings } from '../../modelos/standings';
 import { flatMap } from 'rxjs/operators';
@@ -35,9 +35,8 @@ export class CompeticionComponent implements OnInit {
   private matchesAllSeason: Match[];  //capaz lo borro.
   private cantidadPartidosxFecha: number;
   private estadosMatchessFixture: FixtureStageTypeComp[];
-  private fixtureElegido: FixtureStageTypeComp;
 
-  constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService) { 
+  constructor(private route: ActivatedRoute, private _compSrv: CompeticionesService, private router: Router) { 
 
   }
 
@@ -53,6 +52,7 @@ export class CompeticionComponent implements OnInit {
       }), flatMap((standings1: StandingsAll)=> {
         this.competition= standings1.competition;
         this.standings= standings1;
+        this._compSrv.subjectSeason.next(standings1);
         this.startSeasonYear= new Date(this.standings.season.startDate).getFullYear();
         this.endSeasonYear= new Date(this.standings.season.endDate).getFullYear(); 
 
@@ -85,7 +85,7 @@ export class CompeticionComponent implements OnInit {
       })).subscribe((datos: Match[])=>{
           this.cantidadPartidosxFecha= datos.length; 
           this.loading= false;
-          // console.log(datos);
+
       }, (error)=> {
          console.log(error);
         this.loading= false;
@@ -120,14 +120,9 @@ export class CompeticionComponent implements OnInit {
   } 
 
   stageFixtureSelected(fixture: FixtureStageTypeComp){    
-    this.fixtureElegido= fixture;
 
-  }
-
-  cerrarModalDesdeFixture(event: string){
-    console.log('comp: ', event);  
-
-    // $('#modalFixture').modal('dispose');
+    this._compSrv.subjectFixture.next(fixture);
+    setTimeout(() => { this.router.navigate(['fixture-comp']) }, 300);
 
   }
 

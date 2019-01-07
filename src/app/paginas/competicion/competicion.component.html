@@ -28,7 +28,7 @@
         </div>
 
         <div *ngFor="let estadoMatchFix of estadosMatchessFixture" class="d-flex justify-content-center row">
-          <div class="card border-success mt-4" (click)="stageFixtureSelected(estadoMatchFix)" style="width: 16rem; height: 9rem; cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-lg3">
+          <div class="card border-success mt-4" (click)="stageFixtureSelected(estadoMatchFix)" style="width: 16rem; height: 9rem; cursor: pointer;">
             <div class="card-header font-weight-light d-flex justify-content-center"> {{competition.name}} </div>
             <div class="card-body text-success">
               <h6 class="card-title text-center"> {{estadoMatchFix.name_stage}} </h6> 
@@ -101,21 +101,3 @@
   </div>
 </div>
 <!--Modal table-->
-
-<!--Modal fixture-->
-<div id="modalFixture" class="modal fade bd-example-modal-lg3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-fixture-comp [competencia]="standings?.competition" [seasonFixture]="standings?.season" [cantPartCadaFecha]="cantidadPartidosxFecha" [fixture]="fixtureElegido" (cerrarModalFix)="cerrarModalDesdeFixture($event)"></app-fixture-comp>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Modal fixture-->

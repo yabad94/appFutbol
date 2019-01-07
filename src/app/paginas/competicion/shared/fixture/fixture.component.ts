@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Competition } from 'src/app/modelos/competition';
 import { Season } from 'src/app/modelos/season';
 import { CompeticionesService } from 'src/app/servicios/competiciones.service';
@@ -10,13 +10,13 @@ import { FixtureStageTypeComp } from 'src/app/modelos/fixtureStageTypeComp';
   templateUrl: './fixture.component.html',
   styles: []
 })
+
 export class FixtureComponent implements OnInit, OnChanges {
 
   @Input() competencia: Competition;
   @Input() seasonFixture: Season;
   @Input() fixtureStage: FixtureStageTypeComp;
   @Input() cantPartidosXFecha: number;
-  @Output() cerrarModalFix= new EventEmitter<string>();
 
   private loading: boolean;
   private pageActual: number;
@@ -26,10 +26,6 @@ export class FixtureComponent implements OnInit, OnChanges {
   constructor(private _compSrv: CompeticionesService) { }
 
   ngOnInit() {  
-
-  //   $('#matchButton').click(function() {
-  //     $('#modalwindow').modal('hide');
-  //   });
 
   }
 
@@ -48,7 +44,6 @@ export class FixtureComponent implements OnInit, OnChanges {
   }
 
   verPartido(id: number){
-    this.cerrarModalFix.emit('#modalFixture');
     this.idPartido= id;
   
   }

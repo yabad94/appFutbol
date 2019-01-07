@@ -3,7 +3,8 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatosConfig } from './datosConfiguracion';
 import { StandingsAll } from '../modelos/standings';
-import { Subject, Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { FixtureStageTypeComp } from 'src/app/modelos/fixtureStageTypeComp';
 
 
 @Injectable({
@@ -13,13 +14,23 @@ import { Subject, Observable } from 'rxjs';
 export class CompeticionesService {
 
   public tablasCompetencia: StandingsAll;
-  private twitterBearerKey: string= 'Bearer AAAAAAAAAAAAAAAAAAAAAOrB9AAAAAAAdKVHpu6xhzHfq4rcKGtC%2F5hRUpQ%3DWmBaBBaf50KZIy0ccKNF6vAHFTzi6oGroezKbSJfOIJbTQvp1x'
-  subject: Subject<boolean>= new Subject<boolean>();
-  observable: Observable<boolean>= this.subject.asObservable();
+  // private twitterBearerKey: string= 'Bearer AAAAAAAAAAAAAAAAAAAAAOrB9AAAAAAAdKVHpu6xhzHfq4rcKGtC%2F5hRUpQ%3DWmBaBBaf50KZIy0ccKNF6vAHFTzi6oGroezKbSJfOIJbTQvp1x'
+  public subjectSeason: BehaviorSubject<StandingsAll>= new BehaviorSubject<StandingsAll>(null);
+  public observableSeason: Observable<StandingsAll>= this.subjectSeason.asObservable();
+  public subjectFixture: BehaviorSubject<FixtureStageTypeComp>= new BehaviorSubject<FixtureStageTypeComp>(null);
+  public observableFixture: Observable<FixtureStageTypeComp>= this.subjectFixture.asObservable();
 
 
   constructor(private _http: HttpClient, private _datosConf: DatosConfig) {
 
+  }
+
+  setSeason(season: StandingsAll){
+    this.subjectSeason.next(season);
+  }
+
+  setFixture(fixture: FixtureStageTypeComp){
+    this.subjectFixture.next(fixture);
   }
 
   getCompetencias(){
@@ -42,7 +53,7 @@ export class CompeticionesService {
       tablasCompetencia.season= datos['season']; 
       tablasCompetencia.competition= datos['competition'];
       this.tablasCompetencia= tablasCompetencia;
-      
+            
       return tablasCompetencia;
     }));
   }
@@ -99,11 +110,11 @@ export class CompeticionesService {
   
   }
 
-  getTwitterTeam(user: string){
+  // getTwitterTeam(user: string){
 
-    return this._http.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='+ user, {headers: new HttpHeaders({'Authorization': this.twitterBearerKey})});
+  //   return this._http.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='+ user, {headers: new HttpHeaders({'Authorization': this.twitterBearerKey})});
 
-  }
+  // }
 
   getFixtureTeam(idTeam: number){
 
