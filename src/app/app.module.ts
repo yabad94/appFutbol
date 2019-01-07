@@ -24,6 +24,7 @@ import { LivesMatchesComponent } from './paginas/home/lives-matches/lives-matche
 import { ScorersComponent } from './paginas/competicion/scorers/scorers.component';
 import { FixtureTeamComponent } from './paginas/competicion/team-comp/fixture-team/fixture-team.component';
 import { FixtureComponent } from './paginas/competicion/shared/fixture/fixture.component';
+import { WinnerComponent } from './paginas/competicion/historicalDataComp/winner/winner.component';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { FixtureComponent } from './paginas/competicion/shared/fixture/fixture.c
     LivesMatchesComponent, 
     ScorersComponent, 
     FixtureTeamComponent, 
-    FixtureComponent
+    FixtureComponent, WinnerComponent
   ],
   
   imports: [

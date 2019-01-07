@@ -43,6 +43,12 @@ export class CompeticionesService {
     }));
   }
 
+  getHistoricalDataWinners(idComp: number){
+
+    return this._http.get(this._datosConf.linkUrl + 'competitions/' + idComp, {headers: new HttpHeaders({'X-Auth-Token': this._datosConf.tokenHeader})});
+
+  }
+
   getTablaCompetencia(idComp: number){
 
     let tablasCompetencia: StandingsAll= { season: null, standings: [],  competition: null };
