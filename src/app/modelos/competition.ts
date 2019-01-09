@@ -1,10 +1,10 @@
 import { Area } from "./area";
-import { CurrentSeason } from "./currentSeason";
+import { Season } from './season';
 
 export class Competition {
     id: number;
     area: Area;
-    currentSeason?: CurrentSeason;
+    currentSeason?: Season;
     name: string;
     code: string;
     plan: string;
